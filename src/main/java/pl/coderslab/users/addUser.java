@@ -22,7 +22,7 @@ public class addUser extends HttpServlet {
         UserDao userDao = new UserDao();
         userDao.create(user);
         response.sendRedirect(request.getContextPath() + "/users/list");
-//        getServletContext().getRequestDispatcher("/users/add.jsp")
-//                .forward(request, response);
+        getServletContext().getRequestDispatcher("/users/add.jsp")
+                .forward(request, response);
     }
 }

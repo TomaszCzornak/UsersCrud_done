@@ -21,7 +21,7 @@ public class deleteUser extends HttpServlet {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        response.sendRedirect(request.getContextPath() + "/users/list.jsp");
+        response.sendRedirect(request.getContextPath() + "/users/list");
     }
 
 }
