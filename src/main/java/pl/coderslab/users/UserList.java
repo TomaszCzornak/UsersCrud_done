@@ -20,7 +20,7 @@ public class UserList extends HttpServlet {
 
         try {
             request.setAttribute("users", userDao.findAll());
-
+//            response.getWriter().println(userDao.findAll().toString());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -35,8 +35,8 @@ public class UserList extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         User user = new User();
         user.setUserName(request.getParameter("userName"));
-        user.setEmail(request.getParameter("userEmail"));
-        user.setPassword(request.getParameter("userPassword"));
+        user.setEmail(request.getParameter("email"));
+        user.setPassword(request.getParameter("password"));
         UserDao userDao = new UserDao();
         userDao.create(user);
         response.sendRedirect(request.getContextPath() + "/users/list");

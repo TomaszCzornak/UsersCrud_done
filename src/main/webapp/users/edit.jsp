@@ -14,18 +14,20 @@
         </div>
         <div class="card-body">
             <form method="post">
-                <input type="hidden" name="id" value="${user.id}"/>
+                <input type="hidden" name="id" value="${users.id}"/>
                 <div class="form-group">
                     <label for="userName">Nazwa</label>
-                    <input value="${user.userName}" name="userName" type="text" class="form-control" id="userName" placeholder="Nazwa użytkownika">
+                    <input value="${users.getUserName()}" name="userName" type="text" class="form-control" id="userName" placeholder="Nazwa użytkownika">
+
                 </div>
                 <div class="form-group">
-                    <label for="userEmail">Email</label>
-                    <input value="${user.email}" name="userEmail" type="email" class="form-control" id="userEmail" placeholder="Email użytkownika">
+                    <label for="email">Email</label>
+                    <input value="${users.getEmail()}" name="email" type="email" class="form-control" id="email" placeholder="Email użytkownika">
+
                 </div>
                 <div class="form-group">
-                    <label for="userPassword">Hasło</label>
-                    <input name="userPassword" type="password" class="form-control" id="userPassword" placeholder="Hasło użytkownika">
+                    <label for="password">Hasło</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Hasło użytkownika">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Edytuj</button>

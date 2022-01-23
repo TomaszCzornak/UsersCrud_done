@@ -10,7 +10,7 @@ public class UserDao {
     }
 
     private static final String CREATE_USER_QUERY =
-            "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
+            "INSERT INTO users(email, username,password) VALUES (?, ?, ?)";
 
     private static final String READ_QUERY = "SELECT * FROM users where id = ?";
 
@@ -24,8 +24,9 @@ public class UserDao {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement =
                     conn.prepareStatement(CREATE_USER_QUERY, Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, user.getUserName());
-            statement.setString(2, user.getEmail());
+            statement.setString(1, user.getEmail());
+            System.out.println(user.getEmail());
+            statement.setString(2, user.getUserName());
             statement.setString(3, hashPassword(user.getPassword()));
             statement.executeUpdate();
             //Pobieramy wstawiony do bazy identyfikator, a następnie ustawiamy id obiektu user.
@@ -51,10 +52,14 @@ public class UserDao {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 User user = new User();
-                user.setId(resultSet.getInt("id"));
-                user.setUserName(resultSet.getString("username"));
-                user.setEmail(resultSet.getString("email"));
-                user.setPassword(resultSet.getString("password"));
+                user.setId(resultSet.getInt(1));
+                user.setEmail(resultSet.getString(2));
+                user.setUserName(resultSet.getString(3));
+                user.setPassword(resultSet.getString(4));
+//                user.setId(resultSet.getInt("id"));
+//                user.setUserName(resultSet.getString("username"));
+//                user.setEmail(resultSet.getString("email"));
+//                user.setPassword(resultSet.getString("password"));
                 return user;
             }
 
@@ -95,7 +100,11 @@ public class UserDao {
             PreparedStatement statement = conn.prepareStatement(QUERY_FIND_ALL);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()){
-                User user = new User(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+                User user = new User();
+                user.setId(resultSet.getInt(1));
+                user.setEmail(resultSet.getString(2));
+                user.setUserName(resultSet.getString(3));
+                user.setPassword(resultSet.getString(4));
                 users =  addToArray(user, users);
             }
             return users;

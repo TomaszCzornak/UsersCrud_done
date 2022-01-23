@@ -19,12 +19,12 @@
                     <input name="userName" type="text" class="form-control" id="userName" placeholder="Nazwa użytkownika">
                 </div>
                 <div class="form-group">
-                    <label for="userEmail">Email</label>
-                    <input name="userEmail" type="email" class="form-control" id="userEmail" placeholder="Email użytkownika">
+                    <label for="email">Email</label>
+                    <input name="email" type="email" class="form-control" id="email" placeholder="Email użytkownika">
                 </div>
                 <div class="form-group">
-                    <label for="userPassword">Hasło</label>
-                    <input name="userPassword" type="password" class="form-control" id="userPassword" placeholder="Hasło użytkownika">
+                    <label for="password">Hasło</label>
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Hasło użytkownika">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Zapisz</button>

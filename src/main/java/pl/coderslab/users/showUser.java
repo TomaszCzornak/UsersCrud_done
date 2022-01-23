@@ -4,16 +4,22 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
-@WebServlet("/users/add")
-public class addUser extends HttpServlet {
+@WebServlet("/users/show")
+public class showUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        getServletContext().getRequestDispatcher("/users/add.jsp")
+        UserDao userDao = new UserDao();
+
+
+        request.setAttribute("users", userDao.read(Integer.parseInt(request.getParameter("id"))));
+
+        getServletContext().getRequestDispatcher("/users/show.jsp")
                 .forward(request, response);
     }
 
@@ -22,18 +28,18 @@ public class addUser extends HttpServlet {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-
         User user = new User();
+
+        user.setId(Integer.parseInt(request.getParameter("id")));
         user.setUserName(request.getParameter("userName"));
         user.setEmail(request.getParameter("email"));
         user.setPassword(request.getParameter("password"));
-//        response.getWriter().println("user: " +request.getParameter("userName"));
-//        response.getWriter().println("email: " +request.getParameter("email"));
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("users", user);
         UserDao userDao = new UserDao();
-        userDao.create(user);
-        response.sendRedirect(request.getContextPath() + "/users/list");
-//        getServletContext().getRequestDispatcher("/users/add.jsp")
-//                .forward(request, response);
+        userDao.read(id);
+
+        response.sendRedirect(request.getContextPath() + "/users/show");
+
     }
 }

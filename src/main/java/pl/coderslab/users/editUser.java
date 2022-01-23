@@ -17,7 +17,7 @@ public class editUser extends HttpServlet {
         String id = request.getParameter("id");
         UserDao userDao = new UserDao();
         User read = userDao.read(Integer.parseInt(id));
-        request.setAttribute("user", read);
+        request.setAttribute("users", read);
         getServletContext().getRequestDispatcher("/users/edit.jsp")
                 .forward(request, response);
     }
@@ -31,8 +31,8 @@ public class editUser extends HttpServlet {
         User user = new User();
         user.setId(Integer.parseInt(request.getParameter("id")));
         user.setUserName(request.getParameter("userName"));
-        user.setEmail(request.getParameter("userEmail"));
-        user.setPassword(request.getParameter("userPassword"));
+        user.setEmail(request.getParameter("email"));
+        user.setPassword(request.getParameter("password"));
         UserDao userDao = new UserDao();
         try {
             userDao.update(user);
