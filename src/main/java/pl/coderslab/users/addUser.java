@@ -9,12 +9,20 @@ import java.io.IOException;
 public class addUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         getServletContext().getRequestDispatcher("/users/add.jsp")
                 .forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         User user = new User();
         user.setUserName(request.getParameter("userName"));
         user.setEmail(request.getParameter("userEmail"));
@@ -22,7 +30,7 @@ public class addUser extends HttpServlet {
         UserDao userDao = new UserDao();
         userDao.create(user);
         response.sendRedirect(request.getContextPath() + "/users/list");
-        getServletContext().getRequestDispatcher("/users/add.jsp")
-                .forward(request, response);
+//        getServletContext().getRequestDispatcher("/users/add.jsp")
+//                .forward(request, response);
     }
 }

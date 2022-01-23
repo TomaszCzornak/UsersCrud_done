@@ -10,6 +10,10 @@ import java.sql.SQLException;
 public class editUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         String id = request.getParameter("id");
         UserDao userDao = new UserDao();
         User read = userDao.read(Integer.parseInt(id));
@@ -20,6 +24,10 @@ public class editUser extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+
         User user = new User();
         user.setId(Integer.parseInt(request.getParameter("id")));
         user.setUserName(request.getParameter("userName"));
