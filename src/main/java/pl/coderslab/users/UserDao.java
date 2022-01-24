@@ -72,8 +72,8 @@ public class UserDao {
     public void update(User user) throws SQLException {
         try (Connection conn = DbUtil.getConnection()) {
             PreparedStatement statement = conn.prepareStatement(UPDATE_QUERY);
-            statement.setString(1, user.getUserName());
-            statement.setString(2, user.getEmail());
+            statement.setString(2, user.getUserName());
+            statement.setString(1, user.getEmail());
             statement.setString(3, this.hashPassword(user.getPassword()));
             statement.setInt(4, user.getId());
             statement.executeUpdate();
